@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Intelligence System</title>
+</head>
+<body style="font-family: Arial; background:#f4f6f9;">
+
+<div style="width:90%; margin:20px auto;">
+
+    <h2 style="text-align:center;">🎓 Student Intelligence System</h2>
+
+    <!-- MAIN LAYOUT -->
+    <div style="display:flex; gap:30px;">
+
+        <!-- LEFT: PERFORMANCE -->
+        <div style="width:50%; background:white; padding:20px; border-radius:10px;">
+
+            <h3>📊 Performance</h3>
+
+            <form action="/predict" method="post">
+
+                <label>Hours Studied</label><br>
+                <input name="hours" type="number" value="{{ form_data.hours if form_data else '' }}"><br><br>
+
+                <label>Attendance</label><br>
+                <input name="attendance" type="number" value="{{ form_data.attendance if form_data else '' }}"><br><br>
+
+                <label>Sleep Hours</label><br>
+                <input name="sleep" type="number" value="{{ form_data.sleep if form_data else '' }}"><br><br>
+
+                <label>Previous Score</label><br>
+                <input name="previous" type="number" value="{{ form_data.previous if form_data else '' }}"><br><br>
+
+                <label>Internet Access</label><br>
+                <select name="internet">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select><br><br>
+
+                <button type="submit" name="action" value="performance">
+                    Predict Performance
+                </button>
+
+            </form>
+
+            {% if perf_result %}
+            <div style="margin-top:15px; padding:10px; background:#e8f5e9;">
+                <strong>Result:</strong> {{ perf_result }}
+            </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- RIGHT: PLACEMENT -->
+        <div style="width:50%; background:white; padding:20px; border-radius:10px;">
+
+            <h3>💼 Placement</h3>
+
+            <form action="/predict" method="post">
+
+                <label>CGPA</label><br>
+                <input name="cgpa" type="number" value="{{ form_data.cgpa if form_data else '' }}"><br><br>
+
+                <label>Internship</label><br>
+                <select name="internship">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select><br><br>
+
+                <label>Communication Skills</label><br>
+                <input name="communication" type="number" value="{{ form_data.communication if form_data else '' }}"><br><br>
+
+                <label>Projects Completed</label><br>
+                <input name="projects" type="number" value="{{ form_data.projects if form_data else '' }}"><br><br>
+
+                <label>Extra Curricular Score</label><br>
+                <input name="extra" type="number" value="{{ form_data.extra if form_data else '' }}"><br><br>
+
+                <button type="submit" name="action" value="placement">
+                    Predict Placement
+                </button>
+
+            </form>
+
+            {% if place_result %}
+            <div style="margin-top:15px; padding:10px; background:#e8f5e9;">
+                <strong>Result:</strong> {{ place_result }}
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    {% if advice %}
+    <div style="margin-top:20px; padding:10px; background:#fff3cd;">
+        <h4>Suggestions:</h4>
+        <ul>
+            {% for a in advice %}
+            <li>{{ a }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
