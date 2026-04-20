@@ -43,7 +43,3 @@ Takes inputs like:
 - Extra Curricular Score
 
 Predicts whether a student will be **Placed or Not Placed**.
-
----
-
-## 📂 Project Structure
